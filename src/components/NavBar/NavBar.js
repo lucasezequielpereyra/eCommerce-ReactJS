@@ -2,15 +2,16 @@ import React from 'react';
 import { Nav } from 'react-bootstrap';
 import logo from './logo.png';
 import './NavBar.css';
+import CartWidget from '../CartWidget/CartWidget';
 
-export default function NavBar() {
+const NavBar = () => {
     return (
-        <div>
+        <div className='header-conteiner'>
             <div className="logo">
                 <img className="logo-img" src={logo} alt="Logo BUYCO" />
             </div>
 
-            <Nav className="justify-content-center">
+            <Nav>
                 <Nav.Item>
                     <Nav.Link href="/home">Inicio</Nav.Link>
                 </Nav.Item>
@@ -23,7 +24,10 @@ export default function NavBar() {
                 <Nav.Item>
                     <Nav.Link eventKey="link-3">Contacto</Nav.Link>
                 </Nav.Item>
+                <CartWidget  />
             </Nav>
         </div>
     )
 }
+
+export default NavBar;
