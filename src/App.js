@@ -1,12 +1,17 @@
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
-import ItemListConteiner from './components/ItemListConteiner/ItemListConteiner';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 
 function App() {
+  const arrayProductos = [
+    { nombre: 'Computadora', precio: 50000, stock: 50},
+    { nombre: 'Celular', precio: 20000, stock: 15},
+  ];
+
   return (
     <div className="App">
       <NavBar />
-      <ItemListConteiner title='Hola soy una prop! ' descr="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry' s standard dummy text ever since the 1500s, when an unknown printer took a galley" />
+      <ItemListContainer productos={arrayProductos}/>
     </div>
   );
 }
