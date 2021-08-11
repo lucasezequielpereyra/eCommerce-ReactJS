@@ -3,7 +3,7 @@ import './ItemListContainer.css'
 import ItemCount from '../ItemCount/ItemCount'
 
 
-const ItemListConteiner = ({productos}) => {
+const ItemListContainer = ({productos}) => {
     return (
         <div className='productos-container'>
             <div className="producto">
@@ -21,4 +21,4 @@ const ItemListConteiner = ({productos}) => {
     )
 }
 
-export default ItemListConteiner
+export default ItemListContainer
