@@ -1,0 +1,8 @@
+.productos-container{
+    margin-top: 2rem;
+    user-select: none;
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    gap: 1rem 5rem;
+}
+
