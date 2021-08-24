@@ -1,5 +1,17 @@
-.contador{
-    color: rgba(0,142,202,0.75);
-    margin-right: 3px;
-    margin-left: 3px;
+.contador-conteiner{
+    display: inline;
+    margin: 1rem;
+}
+
+.contador-conteiner button{
+    width: 70;
+    margin-left: 1rem 
+}
+
+.buttonMinus{
+    margin-right: .7rem;
+}
+
+.buttonPlus{
+    margin-left: .7rem;
 }

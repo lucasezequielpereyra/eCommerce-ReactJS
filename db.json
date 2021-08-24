@@ -1,0 +1,68 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Macbook Pro",
+            "price": 200000,
+            "stock": 30,
+            "pictureUrl": "https://i.blogs.es/67b0e2/analisis-macbook-pro-13-2020-applesfera-06/450_1000.jpg",
+            "categoryId": 1,
+            "description": "MacBook Pro es una línea de computadores portátiles de alto rendimiento de Apple Inc. que tiene como mercado objetivo los usuarios profesionales. ... Es la primera línea de productos de la empresa en incluir procesadores Intel, y fue presentada en la feria tecnológica MacWorld 2006 el día 10 de enero de 2006."
+        },
+        {
+            "id": 2,
+            "name": "Macbook Air",
+            "price": 170000,
+            "stock": 20,
+            "pictureUrl": "https://www.ventasrosario.com.ar/wp-content/uploads/2021/01/AUaDk6VmkFriSBiQJHrx4V.jpg",
+            "categoryId": 1,
+            "description": "La MacBook Air recibió una actualización de diseño completa en octubre de 2018. Luego hubo una pequeña actualización en julio de 2019 y una actualización más significativa en marzo de 2020 antes de que la línea MacBook Air se trasladara por completo a los procesadores de Apple en noviembre de 2020."
+        },
+        {
+            "id": 3,
+            "name": "iMac",
+            "price": 250000,
+            "stock": 10,
+            "pictureUrl": "https://cdn.pocket-lint.com/r/s/1200x630/assets/images/153252-laptops-review-hands-on-27-inch-imac-2020-initial-review-more-pro-than-ever-image1-xhedju43nz.jpg",
+            "categoryId": 1,
+            "description": "iMac es una serie de computadoras de escritorio fabricados por Apple Inc. Está orientada al mercado doméstico y todos sus modelos se caracterizan por no necesitar una torre y el monitor, el teclado y el mouse son los únicos aparatos."
+        },
+        {
+            "id": 4,
+            "name": "iPhone 11",
+            "price": 100000,
+            "stock": 15,
+            "pictureUrl": "https://www.apple.com/v/iphone-11/d/images/meta/og__f2jtwncwsl2e_specs.png?202012181258",
+            "categoryId": 2,
+            "description": "El iPhone 11 estrena el nuevo procesador A13 Bionic, un 30% más rápido que la versión anterior. Apple asegura que posee la CPU y GPU más rápidas del mercado. Cuenta con 4 GB de memoria y 64 / 128 / 512 GB de almacenamiento interno. iPhone 11 posee dos cámaras traseras."
+        },
+        {
+            "id": 5,
+            "name": "iPhone 12 Pro",
+            "price": 140000,
+            "stock": 12,
+            "pictureUrl": "https://www.apple.com/newsroom/images/product/availability/geo/Apple_iphone12mini-iphone12max-homepodmini-availability_iphone12promax-geo_110520_inline.jpg.large.jpg",
+            "categoryId": 2,
+            "description": "El iPhone 12 Pro dispone de una triple cámara trasera y una cámara frontal que se componen de lo siguiente: Sensor de 12 megapíxeles con lente (7 elementos) con apertura f/1.6, estabilización óptica y longitud focal de 26 milímetros. ... Cámara frontal con sensor de 12 megapíxeles y lente con apertura f/2.2"
+        },
+        {
+            "id": 6,
+            "name": "iPhone 12 Pro Max",
+            "price": 160000,
+            "stock": 7,
+            "pictureUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs9psbUSTwBWajc1hORUjAl-2--4RxcaRDoQ&usqp=CAU",
+            "categoryId": 2,
+            "description": "Como el iPhone 12 Pro, el iPhone 12 Pro Max integra tres cámaras traseras y un escáner LiDAR, las tres con un sensor de la misma resolución: 12 megapíxeles. De hecho, es la resolución también del sensor de la cámara frontal. ... Cámara frontal: sensor de 12 megapíxeles con lente con apertura f/2.2."
+        }
+    ],
+    "categories": [
+        {
+            "id": 1,
+            "name": "computers"
+        },
+        {
+            "id": 2,
+            "name": "smartphones"
+        }
+    ]
+}

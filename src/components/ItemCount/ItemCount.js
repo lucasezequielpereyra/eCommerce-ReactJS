@@ -4,9 +4,7 @@ import { useState } from 'react'
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
 import { Button } from 'react-bootstrap';
 
-
-
-const  ItemCount = ({producto}) => {
+const  ItemCount = ({producto, setStock}) => {
     const [count, setCount] = useState(0);
 
     const agregar = (maximo) => {
@@ -19,17 +17,20 @@ const  ItemCount = ({producto}) => {
 
     const onAdd = (articulo) => {
         alert(`Ud. Agrego ${count} unidades del producto ${articulo}`);
+        setCount(0)
+        let stockNuevo = producto.stock - count
+        setStock(stockNuevo)
     }
 
     return (
-        <div>
-            <p>
-                Cantidad: <AiOutlineMinus onClick={() => quitar()} />
-                <span className='contador' >{`${count}`}</span>
-                <AiOutlinePlus onClick={() => agregar(producto.stock)} />
-            </p>
-            <Button variant="secondary" onClick={() => onAdd(producto.nombre)}>Agregar</Button>
-        </div>
+        <>
+            <span className='contador-conteiner'>
+                <AiOutlineMinus className='buttonMinus' onClick={() => quitar()} />
+                {count}
+                <AiOutlinePlus className='buttonPlus' onClick={() => agregar(producto.stock)} />
+                <Button variant="secondary" onClick={() => onAdd(producto.name)}>Agregar</Button>
+            </span>
+        </>
     )
 }
 

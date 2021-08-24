@@ -3,7 +3,7 @@ import ItemList from '../ItemList/ItemList'
 
 const ItemListContainer = () => {
     return (
-        <div className='productos-container'>
+        <div className='productos-container container-lg'>
             <ItemList />
         </div>
     )

@@ -2,7 +2,9 @@
     margin-top: 2rem;
     user-select: none;
     display: grid;
-    grid-template-columns: repeat(3, 2fr);
+    grid-template-columns: repeat(3, auto);
     gap: 1rem 5rem;
+    width: 100%;
 }
+
 

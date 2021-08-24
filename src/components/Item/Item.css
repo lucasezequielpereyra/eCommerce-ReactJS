@@ -1,3 +1,12 @@
+.item-producto {
+    cursor: pointer;
+}
+
 .item-producto span{
     display: block;
+}
+
+.item-producto img {
+    height: 300px;
+    width: 100%;
 }
