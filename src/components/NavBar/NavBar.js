@@ -1,30 +1,29 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 import logo from './logo.png';
-import './NavBar.css';
 import CartWidget from '../CartWidget/CartWidget';
+import { NavLink  } from 'react-router-dom'
+import './NavBar.css';
+
 
 const NavBar = () => {
     return (
         <div className='header-container'>
             <div className="logo">
-                <img className="logo-img" src={logo} alt="Logo BUYCO" />
+                <NavLink to='/'><img className="logo-img" src={logo} alt="Logo BUYCO" /></NavLink>
             </div>
 
             <Nav>
-                <Nav.Item>
-                    <Nav.Link href="/home">Inicio</Nav.Link>
+                <Nav.Item className='nav-link'>
+                    <NavLink className='nav-link' to="/">Inicio</NavLink>
                 </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="link-1">Productos</Nav.Link>
+                <Nav.Item className='nav-link'>
+                    <NavLink className='nav-link' to="/about">Nosotros</NavLink>
                 </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="link-2">Nosotros</Nav.Link>
+                <Nav.Item className='nav-link'> 
+                    <NavLink className='nav-link' to="/contact">Contacto</NavLink>
                 </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="link-3">Contacto</Nav.Link>
-                </Nav.Item>
-                <CartWidget  />
+                <CartWidget />
             </Nav>
         </div>
     )

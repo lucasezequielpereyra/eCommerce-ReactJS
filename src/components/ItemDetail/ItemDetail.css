@@ -1,0 +1,13 @@
+.item-producto .img-detail {
+    height: 100%;
+    width: 100%;
+}
+
+.description-span{
+    margin: .5rem;
+    text-align: left;
+}
+
+.stock-span {
+    font-weight: bolder;
+}

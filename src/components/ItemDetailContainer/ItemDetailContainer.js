@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { Spinner } from 'react-bootstrap'
 
 
-const ItemDetailContainer = ({ productId, setShow }) => {
+const ItemDetailContainer = () => {
 
-    const [producto, setProducto] = useState({});
-    const [isVisible, setIsVisible] = useState(false);
+    const [producto, setProducto] = useState({})
+    const [isVisible, setIsVisible] = useState(false)
+
+    const { id } = useParams()
 
     useEffect(() => {
         setTimeout(() => {
-            getProductos()
+            axios(`http://localhost:4000/products/${id}`).then((res) =>
+                setProducto(res.data)
+            );
             setIsVisible(true)
-            setShow()
-        }, 2000);
-    })
-
-    const getProductos = async () => {
-        let res = await axios(`http://localhost:4000/products/${productId}`)
-        setProducto(res.data);
-    }
-
+        }, 500);
+    }, [id])
     return (
         <div>
             {isVisible === false ?  <Spinner animation="grow" /> : <ItemDetail producto={producto}/> }

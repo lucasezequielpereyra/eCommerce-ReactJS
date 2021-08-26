@@ -11,3 +11,8 @@
 .logo-img{
     max-width: 300px;
 }
+
+.nav-link {
+    align-content: space-between;
+    color: rgb(12, 81, 172) !important;
+}
