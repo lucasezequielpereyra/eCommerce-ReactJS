@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
-import { Card } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import ItemCount from '../ItemCount/ItemCount'
 import './ItemDetail.css'
 
 const ItemDetail = ({ producto }) => {
 
-    const [stock, setStock] = useState(null)
+    const [count, setCount] = useState(null)
 
 
-    const changeStock = (valorNuevo) => {
-        setStock(valorNuevo)
+    const onAdd = (valor) => {
+        valor > 0 ?  setCount(valor) : alert("Debe ingresar una cantidad mayor a 0")
     }
 
     return (
@@ -23,10 +25,17 @@ const ItemDetail = ({ producto }) => {
                             <span>{producto.description}</span>
                         </span>
                         <span className='stock-span'>
-                            {stock === null ? `Stock: ${producto.stock}` : `Stock: ${stock}`}
+                            {
+                            `STOCK: ${producto.stock - count}`
+                            }
                         </span>
                         <span>
-                            <ItemCount producto={producto} setStock={changeStock} />
+                            {
+                            count === null ? <ItemCount producto={producto} onAdd={onAdd} /> : 
+                            <Link to='/cart'>
+                                <Button variant="secondary" style={{margin:"1rem"}}>Terminar Compra</Button>
+                            </Link>
+                            }
                         </span>
                         <span className='price-span'>
                             ${producto.price}
@@ -36,6 +45,16 @@ const ItemDetail = ({ producto }) => {
             </Card>
         </div>
     )
+}
+
+ItemDetail.propTypes = {
+    producto: PropTypes.shape({
+        name: PropTypes.string,
+        pictureUrl: PropTypes.string,
+        description: PropTypes.string,
+        stock: PropTypes.number,
+        price: PropTypes.number,
+    })
 }
 
 export default ItemDetail

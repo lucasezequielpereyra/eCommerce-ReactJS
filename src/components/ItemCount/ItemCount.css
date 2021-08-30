@@ -1,6 +1,7 @@
 .contador-conteiner{
     display: inline;
     margin: 1rem;
+    user-select: none;
 }
 
 .contador-conteiner button{
