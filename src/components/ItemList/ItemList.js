@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import './ItemList.css'
 import Item from '../Item/Item'
 import { Spinner } from 'react-bootstrap'
@@ -28,9 +27,7 @@ const ItemList = ({ catId }) => {
             {
                 productos.length === 0 ? <Spinner className='container-lg' animation="grow" /> : productos.map((prd) => {
                     return (
-                        <Link key={prd.id} className='link' to={`/product/${prd.id}`}>
-                            <Item producto={prd} key={prd.id} />
-                        </Link>
+                        <Item producto={prd} key={prd.id} />
                     )
                 })
             }
