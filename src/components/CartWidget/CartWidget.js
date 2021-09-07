@@ -1,11 +1,19 @@
 import React from 'react'
-import { FaShoppingCart } from 'react-icons/fa';
+import { Link } from 'react-router-dom'
+import { useCartContext } from "../../context/CartContext"
+
+import { FaShoppingCart } from 'react-icons/fa'
 import './CartWidget.css'
 
 const CartWidget = () => {
+
+    const { totalProductos } = useCartContext()
+
     return (
         <div className='cart-widget'>
-            <span className='widget'><FaShoppingCart /></span>
+            {
+                totalProductos() > 0 &&  <Link to ='/cart' className='widget'><FaShoppingCart /> {totalProductos()}</Link> 
+            }
         </div>
     )
 }

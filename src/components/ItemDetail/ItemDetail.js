@@ -9,14 +9,14 @@ import { useCartContext } from "../../context/CartContext";
 import "./ItemDetail.css";
 
 const ItemDetail = ({ producto }) => {
-    const [count, setCount] = useState(null);
+    const [count, setCount] = useState(0);
     
     const { agregarProducto } = useCartContext();
 
     const onAdd = (valor) => {
         if (valor > 0 ) { 
             setCount(valor)
-            agregarProducto(producto, count)
+            agregarProducto(producto, valor)
         } else {
             alert("Debe ingresar una cantidad mayor a 0")
         }
@@ -40,7 +40,7 @@ const ItemDetail = ({ producto }) => {
                             {`STOCK: ${producto.stock - count}`}
                         </span>
                         <span>
-                            {count === null ? (
+                            {count === 0 ? (
                                 <ItemCount producto={producto} onAdd={onAdd} />
                             ) : (
                                 <Link to="/cart">

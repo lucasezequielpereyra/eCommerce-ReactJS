@@ -8,6 +8,7 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import Products from "./views/Products";
 import Contact from "./views/Contact";
 import About from "./views/About";
+import Cart from "./views/Cart"
 
 // Context
 import { CartProvider } from './context/CartContext';
@@ -26,6 +27,7 @@ function App() {
             <Route path="/contact" exact component={Contact} />
             <Route path='/category/:id' component={ItemListContainer} />
             <Route path='/product/:id' component={ItemDetailContainer} />
+            <Route path='/cart' exact component={Cart} />
           </Switch>
         </div>
       </Router>

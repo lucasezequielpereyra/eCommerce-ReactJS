@@ -10,7 +10,6 @@ const ItemList = ({ catId }) => {
     
     useEffect(() => {
         setTimeout(() => {
-            console.log(catId)
             catId === undefined ? 
             axios(`http://localhost:4000/products`).then((res) =>
                 setProductos(res.data)
