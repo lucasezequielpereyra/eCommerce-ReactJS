@@ -1,8 +1,11 @@
 import React from 'react'
+// Context
 import { useCartContext } from "../../context/CartContext"
+// Bootstrap
 import { Card } from 'react-bootstrap'
+// Icons
 import { IoMdRemoveCircle } from 'react-icons/io'
-
+// Styles
 import './CartItem.css'
 
 const CartItem = ( {item} ) => {

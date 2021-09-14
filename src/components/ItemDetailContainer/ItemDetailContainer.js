@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react'
+// React Router
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
+// Components
 import ItemDetail from '../ItemDetail/ItemDetail';
+// Bootstrap
 import { Spinner } from 'react-bootstrap'
-
+// Firebase
+import { db } from '../../firebase'
+import {
+    doc,
+    getDoc
+} from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
 
@@ -12,13 +19,22 @@ const ItemDetailContainer = () => {
 
     const { id } = useParams()
 
-    useEffect(() => {
-        setTimeout(() => {
-            axios(`http://localhost:4000/products/${id}`).then((res) =>
-                setProducto(res.data)
-            );
+    const getProduct = async (id) => {
+        const docRef = doc(db, 'products', id)
+        const docSnap = await getDoc(docRef)
+        let prdId = {}
+
+        if(docSnap.exists()) { 
             setIsVisible(true)
-        }, 500);
+            prdId = docSnap.id
+            setProducto({...docSnap.data(), id:prdId})
+        } else {
+            alert('ocurrió un error')
+        }
+    }
+
+    useEffect(() => {
+        getProduct(id)
     }, [id])
     return (
         <div>

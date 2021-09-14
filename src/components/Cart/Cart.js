@@ -1,9 +1,11 @@
 import React from 'react'
+// React Router
 import { Link } from 'react-router-dom'
+// Context
 import { useCartContext } from "../../context/CartContext"
-
+// Components
 import CartItem from '../CartItem/CartItem'
-
+// Styles
 import './Cart.css'
 
 
@@ -19,7 +21,6 @@ const Cart = () => {
                     <CartItem item={prd} key={prd.id}/>
                 )
             })
-            
         )
 	} 
 

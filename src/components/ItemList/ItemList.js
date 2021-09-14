@@ -1,24 +1,47 @@
 import React, { useEffect, useState } from 'react'
-import './ItemList.css'
+// Components
 import Item from '../Item/Item'
+// Bootstrap
 import { Spinner } from 'react-bootstrap'
-import axios from 'axios'
+// Firebase
+import { db } from '../../firebase'
+import {
+    collection,
+    query,
+    where,
+    getDocs
+} from 'firebase/firestore'
+// Styles 
+import './ItemList.css'
 
 const ItemList = ({ catId }) => {
 
     const [productos, setProductos] = useState([]);
-    
+
+    const getProducts = async () => {
+        const docs = []
+        const q = query(collection(db, 'products'))
+
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach((doc) => {
+            docs.push({...doc.data(), id: doc.id})
+        })
+        setProductos(docs)
+    }
+
+    const getProductsCat = async (id) => {
+        const docs = []
+        const q = query(collection(db, 'products'), where('categoryId', '==', id))
+
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach((doc) => {
+            docs.push({...doc.data(), id: doc.id})
+        })
+        setProductos(docs)
+    }    
+
     useEffect(() => {
-        setTimeout(() => {
-            catId === undefined ? 
-            axios(`http://localhost:4000/products`).then((res) =>
-                setProductos(res.data)
-            )
-            :
-            axios(`http://localhost:4000/products/?categoryId=${catId}`).then((res) =>
-                setProductos(res.data)
-            )
-        }, 500)
+        catId === undefined ? getProducts() : getProductsCat(catId)
     }, [catId])
 
     return (

@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+// Bootstrap
 import { Card, Button } from "react-bootstrap";
+// React Router
 import { Link } from "react-router-dom";
+// PropTypes
 import PropTypes from "prop-types";
-
-import ItemCount from "../ItemCount/ItemCount";
+// Context
 import { useCartContext } from "../../context/CartContext";
-
+// Components
+import ItemCount from "../ItemCount/ItemCount";
+// Styles
 import "./ItemDetail.css";
 
 const ItemDetail = ({ producto }) => {

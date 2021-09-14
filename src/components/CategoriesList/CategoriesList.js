@@ -1,19 +1,34 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+// React Router
 import { Link } from 'react-router-dom'
+// Components 
 import Category  from '../Category/Category'
+import { db } from '../../firebase'
+import {
+    collection,
+    query,
+    getDocs
+} from 'firebase/firestore'
+// Styles
 import './CategoryList.css'
 
 const CategoriesList = () => {
 
     const [categories, setCategories] = useState([])
 
+    const getCategories = async () => {
+        const docs = []
+        const q = query(collection(db, 'categories'))
+
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach((doc) => {
+            docs.push({...doc.data(), id: doc.id})
+        })
+        setCategories(docs)
+    }
+
     useEffect(() => {
-        setTimeout(() => {
-            axios('http://localhost:4000/categories').then((res) =>
-            setCategories(res.data)
-            );
-        }, 500)
+        getCategories()
     }, [])
 
 

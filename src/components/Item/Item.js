@@ -1,6 +1,9 @@
 import React from 'react'
+// Bootstrap
 import { Card } from 'react-bootstrap'
+// React Router
 import { Link } from 'react-router-dom'
+// Styles
 import './Item.css'
 
 

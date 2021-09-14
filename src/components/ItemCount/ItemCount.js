@@ -1,8 +1,10 @@
-import React from 'react'
-import './ItemCount.css'
-import { useState } from 'react'
+import React, { useState } from 'react'
+// Icons
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
+// Bootstrap
 import { Button } from 'react-bootstrap';
+// Styles
+import './ItemCount.css'
 
 const  ItemCount = ({producto, onAdd}) => {
     const [count, setCount] = useState(1);
