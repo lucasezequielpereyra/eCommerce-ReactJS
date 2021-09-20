@@ -14,7 +14,7 @@ import {
 
 const ItemDetailContainer = () => {
 
-    const [producto, setProducto] = useState({})
+    const [product, setProduct] = useState({})
     const [isVisible, setIsVisible] = useState(false)
 
     const { id } = useParams()
@@ -25,9 +25,9 @@ const ItemDetailContainer = () => {
         let prdId = {}
 
         if(docSnap.exists()) { 
-            setIsVisible(true)
             prdId = docSnap.id
-            setProducto({...docSnap.data(), id:prdId})
+            setProduct({...docSnap.data(), id:prdId})
+            setIsVisible(true)
         } else {
             alert('ocurrió un error')
         }
@@ -36,9 +36,10 @@ const ItemDetailContainer = () => {
     useEffect(() => {
         getProduct(id)
     }, [id])
+
     return (
-        <div>
-            {isVisible === false ?  <Spinner animation="grow" /> : <ItemDetail producto={producto}/> }
+        <div className='detail-container'>
+            {isVisible === false ?  <Spinner animation="grow" /> : <ItemDetail product={product}/> }
         </div>
     )
 }

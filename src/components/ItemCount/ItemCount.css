@@ -1,10 +1,10 @@
-.contador-conteiner{
+.contador-container{
     display: inline;
     margin: 1rem;
     user-select: none;
 }
 
-.contador-conteiner button{
+.contador-container button{
     width: 70;
     margin-left: 1rem 
 }

@@ -6,23 +6,23 @@ import { Button } from 'react-bootstrap';
 // Styles
 import './ItemCount.css'
 
-const  ItemCount = ({producto, onAdd}) => {
+const  ItemCount = ({product, onAdd}) => {
     const [count, setCount] = useState(1);
 
-    const agregar = (maximo) => {
-        count < maximo ? setCount(count+1) : alert('Cantidad Maxima Superada');
+    const handleIncrement = (max) => {
+        count < max ? setCount(count+1) : alert('Cantidad Maxima Superada');
     }
 
-    const quitar = () => {
+    const handleDecrement = () => {
         count > 0 ? setCount(count-1) : alert('Cantidad Minima Superada');
     }
 
     return (
         <>
-            <span className='contador-conteiner'>
-                <AiOutlineMinus className='buttonMinus' onClick={() => quitar()} />
+            <span className='contador-container'>
+                <AiOutlineMinus className='buttonMinus' onClick={() => handleDecrement()} />
                 {count}
-                <AiOutlinePlus className='buttonPlus' onClick={() => agregar(producto.stock)} />
+                <AiOutlinePlus className='buttonPlus' onClick={() => handleIncrement(product.stock)} />
                 <Button variant="secondary" onClick={() => onAdd(count)}>Agregar</Button>
             </span>
         </>

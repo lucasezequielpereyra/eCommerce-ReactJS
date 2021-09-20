@@ -1,13 +1,21 @@
-.item-producto .img-detail {
-    height: 100%;
-    width: 100%;
+.detail-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.description-span{
-    margin: .5rem;
-    text-align: left;
+.item-producto{
+    margin-top: 2rem;
+    width: 40%;
 }
 
-.stock-span {
-    font-weight: bolder;
+.card-producto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-producto img{
+    width: 50%;
+    height: 50%;
 }

@@ -10,12 +10,12 @@ import './CartWidget.css'
 
 const CartWidget = () => {
 
-    const { totalProductos } = useCartContext()
+    const { totalProducts } = useCartContext()
 
     return (
         <div className='cart-widget'>
             {
-                totalProductos() > 0 &&  <Link to ='/cart' className='widget'><FaShoppingCart /> {totalProductos()}</Link> 
+                totalProducts() > 0 &&  <Link to ='/cart' className='widget'><FaShoppingCart /> {totalProducts()}</Link> 
             }
         </div>
     )

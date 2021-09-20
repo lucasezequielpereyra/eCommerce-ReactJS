@@ -16,7 +16,7 @@ import './ItemList.css'
 
 const ItemList = ({ catId }) => {
 
-    const [productos, setProductos] = useState([]);
+    const [products, setProducts] = useState([]);
 
     const getProducts = async () => {
         const docs = []
@@ -26,7 +26,7 @@ const ItemList = ({ catId }) => {
         querySnapshot.forEach((doc) => {
             docs.push({...doc.data(), id: doc.id})
         })
-        setProductos(docs)
+        setProducts(docs)
     }
 
     const getProductsCat = async (id) => {
@@ -37,7 +37,7 @@ const ItemList = ({ catId }) => {
         querySnapshot.forEach((doc) => {
             docs.push({...doc.data(), id: doc.id})
         })
-        setProductos(docs)
+        setProducts(docs)
     }    
 
     useEffect(() => {
@@ -47,9 +47,9 @@ const ItemList = ({ catId }) => {
     return (
         <div className='productos-container container-lg'>
             {
-                productos.length === 0 ? <Spinner className='container-lg' animation="grow" /> : productos.map((prd) => {
+                products.length === 0 ? <Spinner className='container-lg' animation="grow" /> : products.map((prd) => {
                     return (
-                        <Item producto={prd} key={prd.id} />
+                        <Item product={prd} key={prd.id} />
                     )
                 })
             }

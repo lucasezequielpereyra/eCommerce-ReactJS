@@ -1,5 +1,6 @@
 .header-container{
-    background-color: rgb(199, 199, 199);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(28,105,181,1) 100%, rgba(10,175,229,1) 100%, rgba(23,121,140,1) 100%);
+
 }
 
 .logo{
@@ -14,5 +15,9 @@
 
 .nav-link {
     align-content: space-between;
-    color: rgb(12, 81, 172) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.nav-link:hover{
+    color: grey !important;
 }

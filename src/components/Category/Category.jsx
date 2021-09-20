@@ -2,10 +2,10 @@ import React from 'react'
 // Styles
 import './category.css'
 
-export const Category = ({categoria}) => {
+export const Category = ({category}) => {
     return (
         <div className='category'>
-            - {categoria.name}
+            - {category.name}
         </div>
     )
 }

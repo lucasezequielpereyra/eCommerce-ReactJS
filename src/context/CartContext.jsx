@@ -9,48 +9,48 @@ export const CartProvider = ({ children }) => {
 
 	const isInCart = (id) => cart.some((item) => item.id === id);
 
-	const agregarProducto = (producto, cantidad) => {
-		if (isInCart(producto.id)) {
+	const addProduct = (product, quantity) => {
+		if (isInCart(product.id)) {
 			const newCart = cart.map((cartElement) => {
-				if (cartElement.id === producto.id) {
-					return { ...cartElement, cantidad: cartElement.cantidad + cantidad }
+				if (cartElement.id === product.id) {
+					return { ...cartElement, quantity: cartElement.cantidad + quantity }
 				} else return cartElement;
 			})
 			setCart(newCart);
 		} else {
-			setCart((prev) => [...prev, { ...producto, cantidad }])
+			setCart((prev) => [...prev, { ...product, quantity }])
 		}
 	}
 
-	const eliminarProducto = (itemid) => {
+	const removeProduct = (itemid) => {
 		setCart(cart.filter((elem) => elem.id !== itemid));
 	}
 
-	const limpiar = () => setCart([])
+	const cleanCart = () => setCart([])
 
-	const totalProductos = () => {
+	const totalProducts = () => {
 		let total = 0
 		cart.map((prd) => {
 			return(
-				total += prd.cantidad
+				total += prd.quantity
 			)
 		})
 
 		return total
 	}
 
-	const totalPrecio = () => {
-		let totalPrecio = 0 
+	const totalPrice = () => {
+		let totalPrice = 0 
 		cart.map((prd) => {
 			return(
-				totalPrecio +=  (prd.price * prd.cantidad)
+				totalPrice +=  (prd.price * prd.quantity)
 			)
 		})
-		return `$${totalPrecio}`
+		return totalPrice
 	}
 
 	return (
-		<CartContext.Provider value={{ cart, agregarProducto, eliminarProducto, limpiar, totalProductos, totalPrecio }}>
+		<CartContext.Provider value={{ cart, addProduct, removeProduct, cleanCart, totalProducts, totalPrice }}>
 			{children}
 		</CartContext.Provider>
 	);
