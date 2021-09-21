@@ -1,5 +1,11 @@
 import React, { useContext, useState, createContext } from "react"
 
+//Firebase
+import { db } from '../firebase'
+import { addDoc, serverTimestamp, collection, query, orderBy, getDocs, updateDoc, doc } from "firebase/firestore"
+// Sweet Alert
+import swal from 'sweetalert'
+
 export const CartContext = createContext()
 
 export const useCartContext = () => useContext(CartContext)
@@ -31,7 +37,7 @@ export const CartProvider = ({ children }) => {
 	const totalProducts = () => {
 		let total = 0
 		cart.map((prd) => {
-			return(
+			return (
 				total += prd.quantity
 			)
 		})
@@ -40,18 +46,61 @@ export const CartProvider = ({ children }) => {
 	}
 
 	const totalPrice = () => {
-		let totalPrice = 0 
+		let totalPrice = 0
 		cart.map((prd) => {
-			return(
-				totalPrice +=  (prd.price * prd.quantity)
+			return (
+				totalPrice += (prd.price * prd.quantity)
 			)
 		})
 		return totalPrice
 	}
 
-	return (
-		<CartContext.Provider value={{ cart, addProduct, removeProduct, cleanCart, totalProducts, totalPrice }}>
-			{children}
-		</CartContext.Provider>
-	);
+	const newOrder = async (name, phone, mail) => {
+		await addDoc(collection(db, 'orders'), {
+			buyer: {
+				name: name,
+				phone: phone,
+				mail: mail
+			},
+			items: cart,
+			date: serverTimestamp(),
+			total: totalPrice()
+		})
+	}
+
+	const lastOrder = async () => {
+		const orders = []
+		const q = query(collection(db, "orders"), orderBy("date", "desc"))
+
+		const querySnapshot = await getDocs(q)
+
+		querySnapshot.forEach((doc) => {
+			orders.push(doc.id)
+		})
+
+		return (
+			swal({
+				title: "Compra Exitosa",
+				text: `La compra fue realizada con exito, el id es ${orders[0]}`,
+				icon: "success",
+				button: "Volver",
+			})
+		)
+	}
+	
+	const updateItemStock = async (id, quantity) => {
+		const updateStock = doc(db, 'products', id)
+
+        await updateDoc(updateStock, {
+            "stock": quantity
+        })
+	}
+
+
+
+return (
+	<CartContext.Provider value={{ cart, addProduct, removeProduct, cleanCart, totalProducts, totalPrice, newOrder, lastOrder, updateItemStock }}>
+		{children}
+	</CartContext.Provider>
+);
 };
