@@ -2,7 +2,7 @@ import React, { useContext, useState, createContext } from "react"
 
 //Firebase
 import { db } from '../firebase'
-import { addDoc, serverTimestamp, collection, query, orderBy, getDocs, updateDoc, doc } from "firebase/firestore"
+import { addDoc, serverTimestamp, collection, query, orderBy, getDocs, updateDoc, doc, limit } from "firebase/firestore"
 // Sweet Alert
 import swal from 'sweetalert'
 
@@ -70,7 +70,7 @@ export const CartProvider = ({ children }) => {
 
 	const lastOrder = async () => {
 		const orders = []
-		const q = query(collection(db, "orders"), orderBy("date", "desc"))
+		const q = query(collection(db, "orders"), orderBy("date", "desc"), limit(1))
 
 		const querySnapshot = await getDocs(q)
 
