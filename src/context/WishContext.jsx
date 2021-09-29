@@ -92,14 +92,14 @@ export const WishProvider = ({ children }) => {
 	}
 
 
-return (
-	<WishContext.Provider value={{ 
-        wish,
-        addwWishList,
-		deleteWishProduct,
-        getWishesByUser
-	}}>
-		{children}
-	</WishContext.Provider>
-);
+	return (
+		<WishContext.Provider value={{ 
+			wish,
+			addwWishList,
+			deleteWishProduct,
+			getWishesByUser
+		}}>
+			{children}
+		</WishContext.Provider>
+	)
 };
