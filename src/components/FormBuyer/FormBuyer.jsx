@@ -102,7 +102,7 @@ const FormBuyer = () => {
                                 type="tel"
                                 id='phone'
                                 name='phone'
-                                placeholder='+54 9 11 4478 7002'
+                                placeholder='11xxxxxxxx (11 + 8digits) / 54911xxxxxxxx (54911 + 8digits) '
                             />
                             <ErrorMessage name='phone' component={() => (
                                 <div className='error'> {errors.phone} </div>
