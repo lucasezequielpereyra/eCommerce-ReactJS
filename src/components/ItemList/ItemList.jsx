@@ -18,9 +18,15 @@ const ItemList = ({ catId }) => {
 
     const [products, setProducts] = useState([])
 
-    const getProducts = async () => {
+    const getProducts = async (id) => {
         const docs = []
-        const q = query(collection(db, 'products'))
+        let  q = {}
+
+        if (id === undefined) {
+            q = query(collection(db, 'products'))
+        }else {
+            q = query(collection(db, 'products'), where('categoryId', '==', id))
+        }
 
         const querySnapshot = await getDocs(q)
         querySnapshot.forEach((doc) => {
@@ -29,19 +35,8 @@ const ItemList = ({ catId }) => {
         setProducts(docs)
     }
 
-    const getProductsCat = async (id) => {
-        const docs = []
-        const q = query(collection(db, 'products'), where('categoryId', '==', id))
-
-        const querySnapshot = await getDocs(q)
-        querySnapshot.forEach((doc) => {
-            docs.push({...doc.data(), id: doc.id})
-        })
-        setProducts(docs)
-    }    
-
     useEffect(() => {
-        catId === undefined ? getProducts() : getProductsCat(catId)
+        getProducts(catId)
     }, [catId])
 
     return (
