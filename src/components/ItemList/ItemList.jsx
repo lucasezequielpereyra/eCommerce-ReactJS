@@ -16,7 +16,7 @@ import './ItemList.css'
 
 const ItemList = ({ catId }) => {
 
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([])
 
     const getProducts = async () => {
         const docs = []

@@ -1,0 +1,36 @@
+.order-item{
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin-bottom: 1rem;
+}
+
+.order-item img{
+    max-width: 15vh;
+    width: 200px ;
+    margin: 0 20px;
+}
+
+.order-item span{
+    margin: auto;
+    width: 160px;
+    text-align: center;
+}
+
+.fecha {
+    display: block;
+    font-size: 1.5rem;
+    color: rgba(28,105,181,1);
+    margin-left: -50%;
+    margin-bottom: 1rem;
+    background-color: rgb(200, 200, 200);
+}
+
+.total {
+    display: block;
+    font-size: 1.5rem;
+    color: rgba(28,105,181,1);
+    margin-bottom: 1.51rem;
+}
+

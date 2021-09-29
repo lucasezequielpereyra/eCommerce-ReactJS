@@ -1,9 +1,9 @@
-import CarTComponent from "../components/Cart/Cart"
+import CartComponent from "../components/Cart/Cart"
 
 const Cart = () => {
     return (
         <>
-            <CarTComponent />
+            <CartComponent />
         </>
     );
 };

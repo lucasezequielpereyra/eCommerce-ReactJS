@@ -10,7 +10,7 @@ const CartItem = ( {item} ) => {
     const { removeProduct } = useCartContext()
 
     return (
-        <div className='cart-item'>  
+        <div className='cart-item container'>  
             <img src={item.pictureUrl} alt="Imagen Producto" />
             <span style={{color:"rgba(28,105,181,1)", fontWeight:"bold" }}>
                 {item.name}
@@ -23,7 +23,7 @@ const CartItem = ( {item} ) => {
             </span>
             <span>
                 <button onClick={() => removeProduct(item.id)}>
-                    <IoMdRemoveCircle size={32} color="rgba(28,105,181,1)"/>
+                    <IoMdRemoveCircle size={32} color={ "rgba(28,105,181,1)" } />
                 </button>
             </span>
         </div>

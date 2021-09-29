@@ -38,7 +38,7 @@ const CategoriesList = () => {
             {
                 categories.map((cat) =>  {
                     return(
-                        <Link key={cat.id} className='link' to={`/category/${cat.id}`}>
+                        <Link key={cat.id} className='link' to={`/category/${cat.key}`}>
                             <Category category={cat} key={cat.id} />
                         </Link>
                     )

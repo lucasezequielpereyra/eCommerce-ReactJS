@@ -24,7 +24,7 @@ const Cart = () => {
                     )
                 })}
                 <div className='price-container'>Carrito: u$s{totalPrice()}</div>
-                <FormBuyer/>
+                <FormBuyer />
             </>
         )
 	} 

@@ -2,16 +2,41 @@ import React, { useContext, useState, createContext } from "react"
 
 //Firebase
 import { db } from '../firebase'
-import { addDoc, serverTimestamp, collection, query, orderBy, getDocs, updateDoc, doc, limit } from "firebase/firestore"
+import { 
+	addDoc,
+	serverTimestamp, 
+	collection, 
+	query, 
+	orderBy, 
+	getDocs, 
+	updateDoc, 
+	doc, 
+	limit, 
+} from "firebase/firestore"
 // Sweet Alert
 import swal from 'sweetalert'
+
 
 export const CartContext = createContext()
 
 export const useCartContext = () => useContext(CartContext)
 
+const getLocalStorage = () => {
+	if (JSON.parse(localStorage.getItem('cart'))) {
+		return JSON.parse(localStorage.getItem('cart'))
+	} else{
+		return []
+	}
+}
+
 export const CartProvider = ({ children }) => {
-	const [cart, setCart] = useState([])
+	const [cart, setCart] = useState(
+		getLocalStorage()
+	)
+
+	const setLocalStorage = () => {
+		localStorage.setItem('cart', JSON.stringify(cart))
+	}
 
 	const isInCart = (id) => cart.some((item) => item.id === id);
 
@@ -19,7 +44,7 @@ export const CartProvider = ({ children }) => {
 		if (isInCart(product.id)) {
 			const newCart = cart.map((cartElement) => {
 				if (cartElement.id === product.id) {
-					return { ...cartElement, quantity: cartElement.cantidad + quantity }
+					return { ...cartElement, quantity: cartElement.quantity + quantity }
 				} else return cartElement;
 			})
 			setCart(newCart);
@@ -29,7 +54,9 @@ export const CartProvider = ({ children }) => {
 	}
 
 	const removeProduct = (itemid) => {
-		setCart(cart.filter((elem) => elem.id !== itemid));
+		setCart(cart.filter((elem) => elem.id !== itemid))
+
+		cart.length === 1 && localStorage.clear() // Limpio el localstorage si no hay items en el cart
 	}
 
 	const cleanCart = () => setCart([])
@@ -55,17 +82,19 @@ export const CartProvider = ({ children }) => {
 		return totalPrice
 	}
 
-	const newOrder = async (name, phone, mail) => {
+	const newOrder = async (name, phone, mail, userId) => {
 		await addDoc(collection(db, 'orders'), {
 			buyer: {
 				name: name,
 				phone: phone,
-				mail: mail
+				mail: mail,
+				id: userId
 			},
 			items: cart,
 			date: serverTimestamp(),
 			total: totalPrice()
 		})
+		localStorage.clear() // Limpio el cart una vez realizada la compra
 	}
 
 	const lastOrder = async () => {
@@ -96,10 +125,19 @@ export const CartProvider = ({ children }) => {
         })
 	}
 
-
-
 return (
-	<CartContext.Provider value={{ cart, addProduct, removeProduct, cleanCart, totalProducts, totalPrice, newOrder, lastOrder, updateItemStock }}>
+	<CartContext.Provider value={{ 
+		cart,
+		addProduct, 
+		removeProduct, 
+		cleanCart, 
+		totalProducts, 
+		totalPrice, 
+		newOrder, 
+		lastOrder, 
+		updateItemStock, 
+		setLocalStorage,
+	}}>
 		{children}
 	</CartContext.Provider>
 );

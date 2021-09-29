@@ -3,18 +3,11 @@
 
 }
 
-.logo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .logo-img{
     max-width: 300px;
 }
 
 .nav-link {
-    align-content: space-between;
     color: rgb(255, 255, 255) !important;
 }
 

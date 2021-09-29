@@ -1,15 +1,31 @@
 import React from 'react'
+// React Router
+import { Link } from 'react-router-dom'
 // Formik
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 // CartContext
 import { useCartContext } from "../../context/CartContext"
+// AUTH0
+import { useAuth0 } from "@auth0/auth0-react"
 // Styles
 import './FormBuyer.css'
-
 
 const FormBuyer = () => {
 
     const { newOrder, lastOrder, cart, updateItemStock, cleanCart } = useCartContext()
+    const { isAuthenticated, user } = useAuth0()
+
+    const isLogin = () =>{
+        return <button type='submit'>Realizar Compra</button>
+    }
+
+    const isLogOut = () =>{
+        return (
+            <Link to='login'>
+                <button>INGRESAR PARA CONTINUAR</button>
+            </Link>
+        )
+    }
 
     return (
         <div className='form-container'>
@@ -17,7 +33,8 @@ const FormBuyer = () => {
                 initialValues={{
                     name: '',
                     phone: '',
-                    mail: ''
+                    mail: '',
+                    mailVerif: ''
                 }}
 
                 validate={(values) => {
@@ -45,13 +62,20 @@ const FormBuyer = () => {
                         err.mail = 'El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.'
                     }
 
+                    // Validacion verifcorreo
+                    if (!values.mailVerif) {
+                        err.mailVerif = 'Por favor repite el correo electronico'
+                    } else if (values.mailVerif !== values.mail) {
+                        err.mailVerif = 'Los correo electronicos deben coincidir'
+                    }
+
                     return err
                 }}
 
                 onSubmit={(values, { resetForm }) => {
-                    newOrder(values.name, values.phone, values.mail)
+                    newOrder(values.name, values.phone, values.mail, user.sub)
                     cart.map((prd) => {
-                        return updateItemStock(prd.id, prd.stock-prd.quantity)
+                        return updateItemStock(prd.id, prd.stock - prd.quantity)
                     })
                     lastOrder()
 
@@ -96,7 +120,21 @@ const FormBuyer = () => {
                                 <div className='error'> {errors.mail} </div>
                             )} />
                         </div>
-                        <button type='submit'>Realizar Compra</button>
+                        <div>
+                            <label htmlFor="mailVerif">Repetir Correo</label>
+                            <Field
+                                type="email"
+                                id='mailVerif'
+                                name='mailVerif'
+                                placeholder='mail@mail.com'
+                            />
+                            <ErrorMessage name='mailVerif' component={() => (
+                                <div className='error'> {errors.mailVerif} </div>
+                            )} />
+                        </div>.
+                        {
+                            isAuthenticated ?  isLogin() : isLogOut()
+                        }
                     </Form>
                 )}
             </Formik>

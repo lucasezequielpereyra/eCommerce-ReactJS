@@ -7,12 +7,16 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 // Context
 import { useCartContext } from "../../context/CartContext"
+// AUTH0
+import { useAuth0 } from '@auth0/auth0-react'
 // Components
 import ItemCount from "../ItemCount/ItemCount"
 // Styles
 import "./ItemDetail.css"
 
 const ItemDetail = ({ product }) => {
+    const { user, isAuthenticated } = useAuth0()
+
     const [count, setCount] = useState(0)
     
     const { addProduct } = useCartContext()
@@ -21,10 +25,12 @@ const ItemDetail = ({ product }) => {
         if (valor > 0 ) { 
             setCount(valor)
             addProduct(product, valor)
+            
         } else {
             alert("Debe ingresar una cantidad mayor a 0")
         }
     }
+    
 
     return (
         <div className="item-producto">
@@ -45,7 +51,7 @@ const ItemDetail = ({ product }) => {
                         </span>
                         <span>
                             {count === 0 ? (
-                                <ItemCount product={product} onAdd={onAdd} />
+                                <ItemCount product={product} onAdd={onAdd} isAuthenticated={isAuthenticated} userInfo={user} />
                             ) : (
                                 <>
                                     <Link to="/">

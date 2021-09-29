@@ -1,0 +1,28 @@
+.wish-container {
+    margin-bottom: 3rem;
+}
+
+.wish-container button{
+    background-color: transparent;
+    border: none;
+}
+
+.wish-item{
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    margin-bottom: 1rem;
+}
+
+.wish-item img{
+    max-width: 15vh;
+    width: 200px ;
+    margin: 0 20px;
+}
+
+.wish-item span{
+    margin: auto;
+    width: 150px;
+    text-align: center;
+}
