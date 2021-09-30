@@ -10,29 +10,29 @@ import swal from 'sweetalert';
 // Styles
 import './ItemCount.css'
 
-const  ItemCount = ({product, onAdd, isAuthenticated, userInfo}) => {
+const ItemCount = ({ product, onAdd, isAuthenticated, userInfo }) => {
     const [count, setCount] = useState(1);
 
     const handleIncrement = (max) => {
-        count < max ? setCount(count+1) : 
-        swal({
-            title: "Error",
-            text: `Cantidad maxima de productos superada!`,
-            icon: "error",
-            button: "Volver",
-        })
+        count < max ? setCount(count + 1) :
+            swal({
+                title: "Error",
+                text: `Cantidad maxima de productos superada!`,
+                icon: "error",
+                button: "Volver",
+            })
     }
 
     const handleDecrement = () => {
-        count > 1 ? setCount(count-1) : 
-        swal({
-            title: "Error",
-            text: `Cantidad minima de productos superada!`,
-            icon: "error",
-            button: "Volver",
-        })
+        count > 1 ? setCount(count - 1) :
+            swal({
+                title: "Error",
+                text: `Cantidad minima de productos superada!`,
+                icon: "error",
+                button: "Volver",
+            })
     }
-    
+
     const { addwWishList } = useWishContext()
 
     return (
@@ -41,12 +41,12 @@ const  ItemCount = ({product, onAdd, isAuthenticated, userInfo}) => {
                 <AiOutlineMinus className='buttonMinus' onClick={() => handleDecrement()} />
                 {count}
                 <AiOutlinePlus className='buttonPlus' onClick={() => handleIncrement(product.stock)} />
-                { 
+                {
                     product.stock === 0 ? <Button className='custom-btn' disabled>Agregar</Button>
-                    : 
-                    <Button className='custom-btn' onClick={() => onAdd(count)}>Agregar</Button>
+                        :
+                        <Button className='custom-btn' onClick={() => onAdd(count)}>Agregar</Button>
                 }
-                                
+
                 {
                     isAuthenticated && <Button variant="secondary" onClick={() => addwWishList(userInfo.sub, product)}>Agregar a Lista</Button>
                 }

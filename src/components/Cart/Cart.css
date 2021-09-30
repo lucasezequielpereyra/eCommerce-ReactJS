@@ -1,17 +1,17 @@
 .cart-container{
-    margin-top: 2rem;
+   margin-top: 2rem;
 }
 
 .cartEmpty-container{ 
-    margin: 3rem 0;
+   margin: 3rem 0;
 }
 
 .cartEmpty-container h3 {
-    text-decoration: none;
+   text-decoration: none;
 }
 
 .price-container{
-    font-size: 2rem;
-    color: rgba(28,105,181,1);
-    margin-bottom: 2rem;
+   font-size: 2rem;
+   color: rgba(28,105,181,1);
+   margin-bottom: 2rem;
 }
