@@ -30,7 +30,7 @@ const Profile = () => {
     return (
         <div className='profile-container'>
             <div className='header' style={{marginTop:"1rem"}}>
-                <h1>Bienvenido <span style={{"color":"rgba(28,105,181,1)"}}>{user.given_name}</span>! </h1>
+                <h1>Bienvenido <span style={{"color":"rgba(28,105,181,1)"}}>{user.nickname}</span>! </h1>
                 <Button className='button-profile' onClick={() => handleButtonOrdersClick()}>Mis Compras</Button>
                 <Button className='button-profile' onClick={() => handleButtonWishesClick()}>Mi Lista</Button>
             </div>
